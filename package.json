@@ -24,5 +24,17 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^1.7.11",
     "serve-favicon": "~2.1.3"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroip/quiz-2015-pc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedroip/quiz-2015-pc/issues"
+  },
+  "homepage": "https://github.com/pedroip/quiz-2015-pc#readme",
+  "description": ""
 }
