@@ -41,8 +41,10 @@ var sequelize = new Sequelize(DB_name,user,pwd,
 							   omitNull: true    //Solo Postfres
 							  } 
 							  );
-				 
+		
+		
 // Importar la definición de la tabla Quiz en quiz.js  --- path crea la ruta al objeto
+console.log('Sincronizando Data Base');
 var Quiz = sequelize.import(path.join(__dirname,'quiz'));
 
 exports.Quiz = Quiz; // Exporta definición de tabla Quiz
@@ -51,9 +53,11 @@ exports.Quiz = Quiz; // Exporta definición de tabla Quiz
 sequelize.sync().success(
   // Esto se Ejecuta una vez creada la tabla
   function() {
+	   console.log('Sincronizando Fianlizado ... contando datos'); 
 	   Quiz.count().success(
 	      function (count) {
 			  // Comprueba que la tabla esté vacia
+			  console.log('Regitros en la base de datos: '+count);
 			  if (count === 0) {
 				  Quiz.create({ pregunta: 'Capital de Portugal',
 				                 respuesta: 'Lisboa'

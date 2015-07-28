@@ -25,7 +25,7 @@ exports.load = function (req,res,next,quizId) {
 // Creamos las propiedades del controlador quiz 
 
 // GET /quizes
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
   console.log('Controlador: index');
   
   var busqueda = {};
