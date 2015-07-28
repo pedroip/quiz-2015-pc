@@ -25,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* Carga de los Layout */
 app.use(partials());
+
+/* Añade el Gestor de Rutas */
 app.use('/', routes);
 
 
@@ -36,7 +38,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

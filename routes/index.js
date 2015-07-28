@@ -15,6 +15,9 @@ router.get('/author', function(req, res) {
   res.render('author', { title: 'Creditos' });
 });
 
+//Autocarga de comandor con :quizId
+router.param('quizId',quizController.load);
+
 // Añadimos las Rutas de Quizes
 router.get('/quizes',						quizController.index);
 router.get('/quizes/:quizId(\\d+)',			quizController.show);

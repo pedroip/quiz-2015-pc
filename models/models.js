@@ -55,9 +55,15 @@ sequelize.sync().success(
 	      function (count) {
 			  // Comprueba que la tabla esté vacia
 			  if (count === 0) {
+				  Quiz.create({ pregunta: 'Capital de Portugal',
+				                 respuesta: 'Lisboa'
+					         }).success(function() {console.log('Base Lisboa OK')});
 				  Quiz.create({ pregunta: 'Capital de Italia',
 				                 respuesta: 'Roma'
-					         }).success(function() {console.log('Base de datos inicializada')});
+					         }).success(function() {console.log('Base Roma OK')});
+               	   Quiz.create({ pregunta: 'Nombre ("Solo Nombre") del descubridor de America',
+				                 respuesta: 'Cristobal'
+					         }).success(function() {console.log('Base Cristobal OK')});						 
 			  };
 		  }
 	   );
