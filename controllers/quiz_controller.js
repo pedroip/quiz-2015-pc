@@ -26,9 +26,16 @@ exports.load = function (req,res,next,quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
-  console.log('Controlador: index');	
-  models.Quiz.findAll().then(function(quizes) {
-	  	res.render('quizes/index', { quizes: quizes });
+  console.log('Controlador: index');
+  
+  var busqueda = {};
+  if (req.query.search) {
+	 var cadena = '%'+req.query.search.replace(/\s/g,"%")+'%';
+	 busqueda = {where:["upper(pregunta) like upper(?)",cadena]};  
+  } 
+  
+  models.Quiz.findAll(busqueda).then(function(quizes) {
+	  	res.render('quizes/index', { quizes: quizes , busqueda: req.query.search });
 	}).catch(function(error) { next(error); } );
 };
 
@@ -74,6 +81,14 @@ exports.answer = function(req, res) {
 	 resultado = 'Correcto';
   } 
   res.render('quizes/answer', {quiz:req.quiz, respuesta: resultado});
+  
+};
+
+
+//GET /quizes/buscar/
+exports.buscar = function(req, res) {
+	
+   res.render('quizes/busqueda', { busqueda:""});
   
 };
 

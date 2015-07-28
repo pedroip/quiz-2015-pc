@@ -8,4 +8,13 @@
         </td>
       </tr>		
 	<% } %>
+	<% if (quizes.length==0) { %>
+	   <tr><td>No hay Preguntas</td></tr>
+	<% } %>
 </table>
+
+<% if (busqueda) { %>
+      <p> * Resultado de aplicar el filtrado de [<strong><%= busqueda %></strong>] en la base de datos de pregutas</p>
+<% } else { %>
+      <p> * Relación completa de la base de datos de preguntas </p>
+<% } %> 

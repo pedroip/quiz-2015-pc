@@ -20,6 +20,7 @@ router.param('quizId',quizController.load);
 
 // Añadimos las Rutas de Quizes
 router.get('/quizes',						quizController.index);
+router.get('/quizes/buscar',				quizController.buscar);
 router.get('/quizes/:quizId(\\d+)',			quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 
