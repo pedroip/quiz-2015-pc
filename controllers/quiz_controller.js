@@ -85,6 +85,31 @@ exports.answer = function(req, res) {
 };
 
 
+// GET /quizes/new
+exports.new = function(req, res) {
+  console.log('Controlador: new');
+
+  //Crea objeto quiz vacio + los valores pasados en parametros - Valores Iniciales
+  var quiz = models.Quiz.build({pregunta:'Pregunta', respuesta:'Respuesta'});
+    
+  //Llamamos a la vistas con los valores iniciales. 
+  res.render('quizes/new', {quiz: quiz});
+  	
+};
+
+// POST /quizes/create
+exports.create = function(req, res) {
+  console.log('Controlador: create');
+
+  //Crea objeto quiz vació + los valores pasados en parámetros  ( Valores Iniciales body/post del formulario )
+  var quiz = models.Quiz.build(req.body.quiz);
+  quiz.save({fields:["pregunta","respuesta"]}).then(function() {
+	                                                    res.redirect('/quizes');
+                                                     })
+    	 	
+};
+
+
 
 
 
