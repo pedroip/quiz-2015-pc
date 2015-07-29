@@ -35,7 +35,7 @@ exports.index = function(req, res, next) {
   } 
   
   models.Quiz.findAll(busqueda).then(function(quizes) {
-	  	res.render('quizes/index', { quizes: quizes , busqueda: req.query.search || '' });
+	  	res.render('quizes/index', { quizes: quizes , busqueda: req.query.search || '', errors:[] });
 	}).catch(function(error) { next(error); } );
 };
 
@@ -45,7 +45,7 @@ exports.show = function(req, res) {
   console.log('Controlador: show . Parametro quizId '+req.params.quizId);
 
   //Suponemos que req.quiz ya se cargo en el objeto con premura en .load.  
-  res.render('quizes/show', {quiz: req.quiz});
+  res.render('quizes/show', {quiz: req.quiz, errors:[]});
   
   /* Codigo Sustituido por .load
   models.Quiz.find(req.params.quizId).then(function(quiz) {
@@ -80,7 +80,7 @@ exports.answer = function(req, res) {
   if  (req.query.respuesta === req.quiz.respuesta) {
 	 resultado = 'Correcto';
   } 
-  res.render('quizes/answer', {quiz:req.quiz, respuesta: resultado});
+  res.render('quizes/answer', {quiz:req.quiz, respuesta: resultado, errors:[]});
   
 };
 
@@ -93,7 +93,7 @@ exports.new = function(req, res) {
   var quiz = models.Quiz.build({pregunta:'Pregunta', respuesta:'Respuesta'});
     
   //Llamamos a la vistas con los valores iniciales. 
-  res.render('quizes/new', {quiz: quiz});
+  res.render('quizes/new', {quiz: quiz,errors:[]});
   	
 };
 
@@ -103,10 +103,22 @@ exports.create = function(req, res) {
 
   //Crea objeto quiz vació + los valores pasados en parámetros  ( Valores Iniciales body/post del formulario )
   var quiz = models.Quiz.build(req.body.quiz);
-  quiz.save({fields:["pregunta","respuesta"]}).then(function() {
+  
+  /* Añadir Sin Controlar Errores
+   quiz.save({fields:["pregunta","respuesta"]}).then(function() {
 	                                                    res.redirect('/quizes');
-                                                     })
-    	 	
+                                                      })
+  */  	 	
+  var err=quiz.validate();
+  if (err) {
+	 var i=0; var errores=new Array();//se convierte en [] con la propiedad message por compatibilida con layout
+     for (var prop in err) errores[i++]={message: err[prop]}; 
+ 	res.render('quizes/new', {quiz: quiz, errors: errores});
+  } else {
+	// Guarda los campos si la validación es correcta
+ 	quiz.save({fields:["pregunta","respuesta"]}).then(function() { res.redirect('/quizes'); }); 
+  }
+		 		
 };
 
 

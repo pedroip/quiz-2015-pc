@@ -7,12 +7,12 @@ var quizController = require('../controllers/quiz_controller');
 /* GET home page. */
 router.get('/', function(req, res) { 
   /* Renderiza la Vista Quiz sin controlador  */	
-  res.render('index', { title: 'Quiz' });
+  res.render('index', { title: 'Quiz',errors:[] });
 });
 
 router.get('/author', function(req, res) { 
   /* Creditos de la Web  */	
-  res.render('author', { title: 'Creditos' });
+  res.render('author', { title: 'Creditos',errors:[] });
 });
 
 //Autocarga de comandor con :quizId
