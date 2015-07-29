@@ -131,7 +131,7 @@ exports.edit = function(req, res) {
 
 // GET /quizes/update
 exports.update = function(req, res) {
-  console.log('Controlador: edit');  
+  console.log('Controlador: update');  
   //Suponemos que req.quiz ya se cargo en el objeto con premura en .load.  
   //Modificamos los valores nuevos
   req.quiz.pregunta=req.body.quiz.pregunta;
@@ -146,9 +146,15 @@ exports.update = function(req, res) {
 	// Guarda los campos si la validación es correcta
  	req.quiz.save({fields:["pregunta","respuesta"]}).then(function() { res.redirect('/quizes'); }); 
   }
-  
-  
-  
+  	
+};
+
+// GET /quizes/edit
+exports.delete = function(req, res) {
+  console.log('Controlador: delete');  
+  //Suponemos que req.quiz ya se cargo en el objeto con premura en .load.  
+  req.quiz.destroy().then( function() { res.redirect('/quizes') }).catch(function(error) { next(error); } );
+ 
   	
 };
 
