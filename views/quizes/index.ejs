@@ -18,3 +18,13 @@
 <% } else { %>
       <p> * Relación completa de la base de datos de preguntas </p>
 <% } %> 
+
+<br>
+
+<form method='get' action='/quizes'>
+	    <p>Filtro de Selección de Preguntas:
+		<input type='text' name='search' value='<%= busqueda %>' />
+		<input type='submit' value='Buscar'></p>
+</form>
+
+

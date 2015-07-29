@@ -35,7 +35,7 @@ exports.index = function(req, res, next) {
   } 
   
   models.Quiz.findAll(busqueda).then(function(quizes) {
-	  	res.render('quizes/index', { quizes: quizes , busqueda: req.query.search });
+	  	res.render('quizes/index', { quizes: quizes , busqueda: req.query.search || '' });
 	}).catch(function(error) { next(error); } );
 };
 
@@ -85,12 +85,6 @@ exports.answer = function(req, res) {
 };
 
 
-//GET /quizes/buscar/
-exports.buscar = function(req, res) {
-	
-   res.render('quizes/busqueda', { busqueda:""});
-  
-};
 
 
 
