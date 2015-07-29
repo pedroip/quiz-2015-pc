@@ -121,7 +121,34 @@ exports.create = function(req, res) {
 		 		
 };
 
+// GET /quizes/edit
+exports.edit = function(req, res) {
+  console.log('Controlador: edit');  
+  //Suponemos que req.quiz ya se cargo en el objeto con premura en .load.  
+  res.render('quizes/edit', {quiz: req.quiz,errors:[]});
+  	
+};
 
-
-
+// GET /quizes/update
+exports.update = function(req, res) {
+  console.log('Controlador: edit');  
+  //Suponemos que req.quiz ya se cargo en el objeto con premura en .load.  
+  //Modificamos los valores nuevos
+  req.quiz.pregunta=req.body.quiz.pregunta;
+  req.quiz.respuesta=req.body.quiz.respuesta;
+   
+  var err=req.quiz.validate();
+  if (err) {
+	 var i=0; var errores=new Array();//se convierte en [] con la propiedad message por compatibilida con layout
+     for (var prop in err) errores[i++]={message: err[prop]}; 
+ 	res.render('quizes/edit', {quiz: req.quiz, errors: errores});
+  } else {
+	// Guarda los campos si la validación es correcta
+ 	req.quiz.save({fields:["pregunta","respuesta"]}).then(function() { res.redirect('/quizes'); }); 
+  }
+  
+  
+  
+  	
+};
 
