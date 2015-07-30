@@ -4,7 +4,9 @@ var models = require('../models/models.js');
 // Autoload - Factorizar el codigo
 exports.load = function (req,res,next,quizId) {
 	console.log('load: bunsacndo ['+quizId+']');
-	models.Quiz.find(quizId).then(
+	models.Quiz.find({ where:  { id: quizId},
+					   include: [{model:models.Comment}]
+					 }).then(
 	   function(quiz) {
 		   console.log('load: fin bunqueda.');
 		   if (quiz) {

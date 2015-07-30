@@ -1,0 +1,14 @@
+﻿<p>
+ <label for='coment' class='rem'>
+    Comentario para la pregunta<br> <strong><%= quiz.id %> : <%= quiz.pregunta %></strong>
+ </label>
+</p>
+<p><textarea rows="5" cols="50" id='coment' name="comment[texto]">
+<%= comment.texto %>
+</textarea> 
+</p>
+
+
+<a href="/quizes/<%= quiz.id %>"><button type='button'>Cancelar</button></a>
+&nbsp;
+<input type='submit' value='Dejar Comentario'>
