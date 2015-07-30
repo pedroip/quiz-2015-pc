@@ -116,7 +116,7 @@ exports.create = function(req, res) {
  	res.render('quizes/new', {quiz: quiz, errors: errores});
   } else {
 	// Guarda los campos si la validación es correcta
- 	quiz.save({fields:["pregunta","respuesta"]}).then(function() { res.redirect('/quizes'); }); 
+ 	quiz.save({fields:["tema","pregunta","respuesta"]}).then(function() { res.redirect('/quizes'); }); 
   }
 		 		
 };
@@ -136,6 +136,7 @@ exports.update = function(req, res) {
   //Modificamos los valores nuevos
   req.quiz.pregunta=req.body.quiz.pregunta;
   req.quiz.respuesta=req.body.quiz.respuesta;
+  req.quiz.tema=req.body.quiz.tema;
    
   var err=req.quiz.validate();
   if (err) {
@@ -144,7 +145,7 @@ exports.update = function(req, res) {
  	res.render('quizes/edit', {quiz: req.quiz, errors: errores});
   } else {
 	// Guarda los campos si la validación es correcta
- 	req.quiz.save({fields:["pregunta","respuesta"]}).then(function() { res.redirect('/quizes'); }); 
+ 	req.quiz.save({fields:["tema","pregunta","respuesta"]}).then( function() { res.redirect('/quizes'); }); 
   }
   	
 };

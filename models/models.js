@@ -59,15 +59,14 @@ sequelize.sync().success(
 			  // Comprueba que la tabla esté vacia
 			  console.log('Regitros en la base de datos: '+count);
 			  if (count === 0) {
-				  Quiz.create({ pregunta: 'Capital de Portugal',
-				                 respuesta: 'Lisboa'
+				  Quiz.create({ pregunta: 'Capital de Portugal',respuesta: 'Lisboa',tema: 'otro'
 					         }).success(function() {console.log('Base Lisboa OK')});
-				  Quiz.create({ pregunta: 'Capital de Italia',
-				                 respuesta: 'Roma'
+				  Quiz.create({ pregunta: 'Capital de Italia', respuesta: 'Roma',tema: 'otro' 
 					         }).success(function() {console.log('Base Roma OK')});
-               	   Quiz.create({ pregunta: 'Nombre ("Solo Nombre") del descubridor de America',
-				                 respuesta: 'Cristobal'
-					         }).success(function() {console.log('Base Cristobal OK')});						 
+               	  Quiz.create({ pregunta: 'Nombre ("Solo Nombre") del descubridor de America', respuesta: 'Cristobal', tema:'humanidades'
+					         }).success(function() {console.log('Base Cristobal OK')});
+                  Quiz.create({ pregunta: '¿Cual es el ORM que usamos com Express para le Modelo?', respuesta: 'Sequelize', tema:'tecnologia'
+					         }).success(function() {console.log('Base Express OK')});							 
 			  };
 		  }
 	   );
