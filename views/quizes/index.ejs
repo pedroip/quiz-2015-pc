@@ -6,6 +6,9 @@
 		     <%= quizes[i].pregunta %>
 		   </a>
         </td>
+		
+		<% if(session.user) {    %>
+				
 		<td>
 		   <p><%= quizes[i].tema %></p>
 		</td>
@@ -20,6 +23,9 @@
 		     <button type="submit" onClick="return confirm('¿Borrar: <%= quizes[i].pregunta %>?')">Borrar</button>
 		   </form>
         </td>
+		
+		<% } %>
+		
       </tr>		
 	<% } %>
 	<% if (quizes.length==0) { %>

@@ -2,6 +2,15 @@
 //No es Necesario por que no necesita el modelo de datos para nada ....
 //var models = require('../models/models.js');
 
+exports.loginRequirez = function(req,res,next) {
+ 	if (req.session.user) {
+		next();
+	} else {
+		res.redirect('/login');
+	}
+};
+
+
 
 exports.new = function(req,res) {
 	
