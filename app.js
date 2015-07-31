@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 
@@ -20,9 +21,28 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser('Semilla para kukis'));
+app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//Helper dinamicos:
+app.use(function(req,res,next){
+	//Guardar el Path en sesion.redir para despues de login o logout
+	//Es como hacer Go Sub Casero. :) Para los GW-Basic
+	if (!req.path.match(/\/login|\/logout/)) {
+		req.session.redir = req.path;
+	}
+	
+    //traspasa valores de req a res
+    res.locals.session=req.session;
+    
+	
+	//Que no pare la fiesta y continué la ejecución
+    next();	
+	
+})
 
 
 /* Carga de los Layout */

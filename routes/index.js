@@ -4,6 +4,8 @@ var router = express.Router();
 /* Cargamos los Controladores */
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
+var sessionController = require('../controllers/session_controller');
+
 
 
 
@@ -34,5 +36,11 @@ router.post('/quizes/create',				quizController.create);
 
 router.get('/quizes/:quizId(\\d+)/comments/new',	commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', 	    commentController.create);
+
+router.get('/login',						sessionController.new); // Formulario de Login
+router.get('/logout',						sessionController.logout); // Formulario de Login
+router.post('/login',						sessionController.create); // Respuesta Formulario de Login
+
+
 
 module.exports = router;
