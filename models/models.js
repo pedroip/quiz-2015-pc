@@ -2,6 +2,10 @@
 var path = require('path');
 
 
+//Partche para P9
+process.env.DATABASE_URL = "sqlite://:@:/";
+
+
 //Adaptamos el PATH a la plataforma de ejecución
 
 // DATABASE_URL Variable de la Base de Datos en Local y Heroku
