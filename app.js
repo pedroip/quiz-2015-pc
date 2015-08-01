@@ -29,6 +29,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Helper dinamicos:
 app.use(function(req,res,next){
+	//Verificar el Tiempo de Sesion , Si hay Sesion Clato
+	if  (req.session.user) {
+		if (req.session.sessiontime) {
+		    var ahora=new Date().valueOf();
+			//Han pasado mas de 2 minutos 2*60 Segundos
+			console.log('Fecha Actual:'+ahora);
+			req.session.sessiontime=req.session.sessiontime+(60*1000);
+			console.log('Fecha Ultimo Acceso +60s:'+req.session.sessiontime);
+            console.log('Fecha Diferencia:'+(req.session.sessiontime-ahora));
+             
+			if (ahora > req.session.sessiontime) {
+				console.log('Redireccoionado a Logout.........');				
+				res.redirect('/logout');
+				//Esto no se Puede Hacer : Can't set headers after they are sent.
+				//delete req.session.user;
+				next();
+			}
+		}
+		console.log('Reinicio del Tiempo.');
+        req.session.sessiontime = new Date().valueOf();		
+	} else if (req.session.sessiontime) {
+		console.log('TIEMPO DESTRUIDO --------------------');
+		delete req.session.sessiontime;
+	}
+	
+
+	//Que no pare la fiesta y continué la ejecución
+    next();	
+	
+});
+
+
+
+//Helper dinamicos:
+app.use(function(req,res,next){
 	//Guardar el Path en sesion.redir para despues de login o logout
 	//Es como hacer Go Sub Casero. :) Para los GW-Basic
 	if (!req.path.match(/\/login|\/logout/)) {
@@ -42,7 +77,8 @@ app.use(function(req,res,next){
 	//Que no pare la fiesta y continué la ejecución
     next();	
 	
-})
+});
+
 
 
 /* Carga de los Layout */

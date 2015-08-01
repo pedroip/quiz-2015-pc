@@ -3,6 +3,7 @@ var models = require('../models/models.js');
 
 
 exports.load = function(req,res,next,commentId) {
+	console.log('cargando Comentarios');
 	models.Comment.find(commentId)
 	 .then( function(comment) {
 		      if (comment) {
@@ -18,6 +19,9 @@ exports.load = function(req,res,next,commentId) {
 
 
 exports.new = function(req, res) {
+	
+	console.log('Renderizando New de comentario.');
+	
     res.render('comments/new', {quiz: req.quiz, comment:{texto:'Deja tu Comentario aquí'} ,errors:[]});
 };
 
