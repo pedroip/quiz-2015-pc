@@ -2,8 +2,8 @@
 var path = require('path');
 
 
-//Partche para P9
-process.env.DATABASE_URL = "sqlite://:@:/";
+//Partche para P9 npm start en local sin foreman
+//process.env.DATABASE_URL = "sqlite://:@:/";
 
 
 //Adaptamos el PATH a la plataforma de ejecución
