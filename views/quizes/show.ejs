@@ -9,6 +9,19 @@
 <p><strong>Comentarios:</strong></p>
 <ul>
 <% for (var i in quiz.comments) { %>
-     <li><%= quiz.comments[i].texto %></li>
+
+  <%if (quiz.comments[i].publicado || session.user) { %>
+
+     <li><%= quiz.comments[i].texto %>
+	 
+	     <% if  (session.user && !quiz.comments[i].publicado) { %>
+	        <form method='POST' action='/quizes/<%= quiz.id %>/comments/<%= quiz.comments[i].id %>/publish?_method=put' >
+                <input type='submit' value='publicar'>			
+			</form>
+	     <% } %>
+	 </li>
+
+  <% } %>	 
+	 
 <% } %>
 </ul>

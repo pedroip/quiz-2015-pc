@@ -23,6 +23,7 @@ router.get('/author', function(req, res) {
 
 //Autocarga de comandor con :quizId
 router.param('quizId',quizController.load);
+router.param('commentId',commentController.load);
 
 // Añadimos las Rutas 
 router.get('/quizes',						quizController.index);
@@ -38,6 +39,9 @@ router.post('/quizes/create',				sessionController.loginRequirez, quizController
 
 router.get('/quizes/:quizId(\\d+)/comments/new',	commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', 	    commentController.create);
+router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', sessionController.loginRequirez, commentController.publish);
+
+
 
 router.get('/login',						sessionController.new); // Formulario de Login
 router.get('/logout',						sessionController.logout); // Formulario de Login
