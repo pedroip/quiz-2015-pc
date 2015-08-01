@@ -15,10 +15,13 @@ exports.loginRequirez = function(req,res,next) {
 exports.new = function(req,res) {
 	
 	//Pasa los errores de forma indirecta por variable de session
+	
 	var errors = req.session.errors || {};
 	req.session.errors={};
 	
 	// Retorna el Formulario de Logín
+	
+	
 	res.render('sessions/new',{errors:errors});
 	
 };

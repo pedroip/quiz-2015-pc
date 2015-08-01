@@ -1,10 +1,10 @@
 ﻿<p><label for='temt' class='rem'>Tematica:</label>
 <select id='temt' name="quiz[tema]">
-  <option value="otro" selected>Otro</option>
-  <option value="humanidades">Humanidades</option>
-  <option value="ocio">Ocio</option>
-  <option value="ciencia">Ciencia</option>
-  <option value="tecnologia">Tecnología</option>
+  <option value="otro" <% if (quiz.tema == 'otro'){%> selected="selected" <%}%> >Otro</option>
+  <option value="humanidades" <% if (quiz.tema == 'humanidades'){%> selected="selected" <%}%>>Humanidades</option>
+  <option value="ocio" <% if (quiz.tema == 'ocio'){%> selected="selected" <%}%> >Ocio</option>
+  <option value="ciencia" <% if (quiz.tema == 'ciencia'){%> selected="selected" <%}%>>Ciencia</option>
+  <option value="tecnologia" <% if (quiz.tema == 'tecnologia'){%> selected="selected" <%}%> >Tecnología</option>
 </select>
 </p>
 <p><label for='preg' class='rem'>Pregunta:</label><input type='text' id='preg' name="quiz[pregunta]" value="<%= quiz.pregunta %>" /></p>
