@@ -41,10 +41,10 @@ app.use(function(req,res,next){
              
 			if (ahora > req.session.sessiontime) {
 				console.log('Redireccoionado a Logout.........');				
-				res.redirect('/logout');
+				//res.redirect('/logout');
 				//Esto no se Puede Hacer : Can't set headers after they are sent.
-				//delete req.session.user;
-				//next();
+				delete req.session.user;
+				delete req.session.sessiontime;				
 			}
 		}
 		console.log('Reinicio del Tiempo.');

@@ -72,8 +72,8 @@ exports.logout = function(req,res) {
 	
 	//Destruir las variable de sesion de usuario
     delete req.session.user;
-	console.log('TIEMPO DESTRUIDO --------------------');
-	delete req.session.sessiontime;
+	//console.log('TIEMPO DESTRUIDO --------------------');
+	//delete req.session.sessiontime;
 	res.redirect(req.session.redir.toString());
 	
 };
