@@ -44,7 +44,7 @@ app.use(function(req,res,next){
 				res.redirect('/logout');
 				//Esto no se Puede Hacer : Can't set headers after they are sent.
 				//delete req.session.user;
-				next();
+				//next();
 			}
 		}
 		console.log('Reinicio del Tiempo.');
