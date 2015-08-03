@@ -35,8 +35,8 @@ app.use(function(req,res,next){
 		    var ahora=new Date().valueOf();
 			//Han pasado mas de 2 minutos 2*60 Segundos
 			console.log('Fecha Actual:'+ahora);
-			req.session.sessiontime=req.session.sessiontime+(60*1000);
-			console.log('Fecha Ultimo Acceso +60s:'+req.session.sessiontime);
+			req.session.sessiontime=req.session.sessiontime+(2*60*1000);
+			console.log('Fecha Ultimo Acceso +120s:'+req.session.sessiontime);
             console.log('Fecha Diferencia:'+(req.session.sessiontime-ahora));
              
 			if (ahora > req.session.sessiontime) {
@@ -49,10 +49,7 @@ app.use(function(req,res,next){
 		}
 		console.log('Reinicio del Tiempo.');
         req.session.sessiontime = new Date().valueOf();		
-	} else if (req.session.sessiontime) {
-		console.log('TIEMPO DESTRUIDO --------------------');
-		delete req.session.sessiontime;
-	}
+	} 
 	
 
 	//Que no pare la fiesta y continué la ejecución
